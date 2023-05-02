@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Movie Database</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+            color: #444;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #0085a1;
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: #444;
+                text-decoration: underline;
+            }
+        /* Navigation Bar */
+        .navbar {
+            background-color: #0085a1;
+            height: 60px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            height: 60px;
+            line-height: 60px;
+            margin: 0;
+            padding: 0 20px;
+            text-shadow: 1px 1px #444;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            margin: 0 10px;
+        }
+
+        .nav-link {
+            color: #fff;
+            font-size: 18px;
+            height: 60px;
+            line-height: 60px;
+            text-shadow: 1px 1px #444;
+        }
+
+            .nav-link:hover {
+                color: #eee;
+            }
+        /* Page Content */
+        .container {
+            margin-top: 80px;
+            padding: 20px;
+        }
+    </style>
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">Movie Database</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("About", "Home")" style="color:gray;font-weight:0;">About Us</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>ss
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

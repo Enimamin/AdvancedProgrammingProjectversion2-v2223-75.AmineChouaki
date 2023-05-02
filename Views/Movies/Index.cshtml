@@ -1,0 +1,91 @@
+﻿@model IEnumerable<MovieApp.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="movie-blocks">
+    @foreach (var item in Model)
+    {
+        <div class="movie-block">
+            <h2 class="movie-title">@item.Title</h2>
+            <div class="movie-actions">
+                <a asp-action="Details" asp-route-id="@item.Id">View Comments & Ratings</a>
+                <button class="movie-edit" onclick="location.href='@Url.Action("Edit", "Movies", new { id = item.Id })'">Edit Movie</button>
+                <button class="movie-delete" onclick="if(confirm('Are you sure you want to delete this movie?')) { location.href='@Url.Action("Delete", "Movies", new { id = item.Id })' }">Delete Movie</button>
+            </div>
+            <div class="movie-details">
+                <div class="movie-starring">
+                    <p><strong>Starring</strong></p>
+                    <ul>
+                        <li>@item.FirstRole</li>
+                        <li>@item.SecondRole</li>
+                        <li>@item.OtherNotableActors</li>
+                    </ul>
+                </div>
+                <div class="movie-directed-written">
+                    <p><strong>Directed by</strong> @item.Director</p>
+                    <p><strong>Written by</strong> @item.Writer</p>
+                </div>
+                <div class="movie-synopsis">
+                    <p><strong>Synopsis</strong></p>
+                    <p>@item.Synopsis</p>
+                </div>
+                <div class="movie-release-date">
+                    <p><strong>Released</strong> @item.ReleaseDate.ToString("MMMM d, yyyy")</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<style>
+    .movie-blocks {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .movie-block {
+        border: 1px solid black;
+        padding: 20px;
+        margin: 10px;
+        width: calc(33.33% - 20px);
+        box-sizing: border-box;
+    }
+
+    .movie-title {
+        font-size: 2rem;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .movie-details {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .movie-starring, .movie-directed-written, .movie-synopsis, .movie-release-date {
+        flex: 1 1 100%;
+    }
+
+        .movie-starring li {
+            list-style: none;
+            margin-bottom: 5px;
+        }
+
+        .movie-synopsis p:first-child, .movie-release-date p:first-child {
+            margin-top: 0;
+        }
+
+        .movie-synopsis p:last-child, .movie-release-date p:last-child {
+            margin-bottom: 0;
+        }
+</style>
